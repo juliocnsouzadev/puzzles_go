@@ -13,3 +13,6 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+.idea/modules.xml
+.idea/puzzles_go.iml
+.idea/vcs.xml

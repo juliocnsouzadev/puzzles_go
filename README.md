@@ -2,9 +2,8 @@
 
 ### Algorithms problems solving
 
-![sortedSquaredArray.png](./readme_images/sortedSquaredArray.png)
-![validateSubsequence.png](readme_images/validateSubsequence.png)
-![tournamentWinner.png](readme_images/tournamentWinner.png)
-![nonConstructableChange.png](readme_images/nonConstructibleChange.png)
-![smallestDiff.png](readme_images/smallestDiff.png)
-![BranchSums.png](readme_images/branchSums.png)
+[Sorted Squared Array](https://github.com/juliocnsouzadev/puzzles_go/issues/5) ➡ [PR 👩🏻‍💻](https://github.com/juliocnsouzadev/puzzles_go/pull/6)
+
+[Find Closest Value In BST](https://github.com/juliocnsouzadev/puzzles_go/issues/7) ➡ [PR 👩🏻‍💻](https://github.com/juliocnsouzadev/puzzles_go/pull/8)
+
+[Depth-first Search](https://github.com/juliocnsouzadev/puzzles_go/issues/9) ➡ [PR 👩🏻‍💻]()

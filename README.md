@@ -9,3 +9,6 @@
 
 ## Greedy Algos
 - [Minimum wating time](https://github.com/juliocnsouzadev/puzzles_go/issues/12) ➡ [PR 👩🏻‍💻](https://github.com/juliocnsouzadev/puzzles_go/pull/13)
+
+## Dynamic Programming
+- [Max subset sum no adjacent](https://github.com/juliocnsouzadev/puzzles_go/issues/15) ➡ [PR 👩🏻‍💻](https://github.com/juliocnsouzadev/puzzles_go/pull/xx)

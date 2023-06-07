@@ -15,11 +15,43 @@ func (h *MinHeap) getParentIndex(childIdx int) int {
 }
 
 func (h *MinHeap) BuildHeap(array []int) {
-	// Write your code here.
+
 }
 
-func (h *MinHeap) siftDown(currentIndex, endIndex int) {
-	// Write your code here.
+func (h *MinHeap) siftDown(parentIndex, endIndex int) {
+	if parentIndex > endIndex || !h.isParent(parentIndex) {
+		return
+	}
+	leftChildIdx, rightChildIdx := h.getChildrenIndices(parentIndex)
+
+	parent := (*h)[parentIndex]
+	leftChild := (*h)[leftChildIdx]
+	rightChild := (*h)[rightChildIdx]
+
+	if parent > leftChild {
+		h.swap(parentIndex, leftChildIdx)
+		leftChildIdx, rightChildIdx = h.getChildrenIndices(parentIndex)
+		parent = (*h)[parentIndex]
+		leftChild = (*h)[leftChildIdx]
+		rightChild = (*h)[rightChildIdx]
+	}
+
+	if parent > rightChild {
+		h.swap(parentIndex, rightChildIdx)
+		leftChildIdx, rightChildIdx = h.getChildrenIndices(parentIndex)
+		parent = (*h)[parentIndex]
+		leftChild = (*h)[leftChildIdx]
+		rightChild = (*h)[rightChildIdx]
+	}
+
+	if leftChild > rightChild {
+		h.swap(leftChildIdx, rightChildIdx)
+	}
+
+}
+
+func (h *MinHeap) swap(i, j int) {
+	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
 
 func (h *MinHeap) getChildrenIndices(parentIdx int) (int, int) {

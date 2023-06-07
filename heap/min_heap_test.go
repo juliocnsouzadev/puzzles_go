@@ -70,3 +70,85 @@ func TestMinHeap_isNotParent(t *testing.T) {
 	// then
 	require.Equal(t, false, isParent)
 }
+
+func TestMinHeap_swap(t *testing.T) {
+	// given
+	heap := NewMinHeap([]int{1, 2, 3, 4, 5, 6, 7})
+	lastIdx := len(*heap) - 1
+
+	// when
+	heap.swap(lastIdx, lastIdx-1)
+
+	// expected
+	expectedHeap := NewMinHeap([]int{1, 2, 3, 4, 5, 7, 6})
+
+	// then
+	require.Equal(t, *heap, *expectedHeap)
+}
+
+func TestMinHeap_SiftDown_notParent(t *testing.T) {
+	// given
+	heap := NewMinHeap([]int{1, 2, 3, 4, 7, 5, 6})
+	parentIdx := 6
+
+	// when
+	heap.siftDown(parentIdx, len(*heap)-1)
+
+	// expected
+	expectedHeap := heap //no changes expected
+
+	// then
+	require.Equal(t, *heap, *expectedHeap)
+}
+
+func TestMinHeap_SiftDown_outOfBounds(t *testing.T) {
+	// given
+	heap := NewMinHeap([]int{1, 2, 3, 4, 7, 5, 6})
+	parentIdx := len(*heap)
+
+	// when
+	heap.siftDown(parentIdx, len(*heap)-1)
+
+	// expected
+	expectedHeap := heap //no changes expected
+
+	// then
+	require.Equal(t, *heap, *expectedHeap)
+}
+
+func TestMinHeap_SiftDown(t *testing.T) {
+	// given
+	heap := NewMinHeap([]int{1, 2, 7, 4, 3, 6, 5})
+	childIdx := 6
+
+	// when
+	parentIdx := heap.getParentIndex(childIdx)
+	heap.siftDown(parentIdx, len(*heap)-1)
+
+	// expected
+	expectedHeap := NewMinHeap([]int{1, 2, 5, 4, 3, 6, 7})
+
+	// then
+	require.Equal(t, *expectedHeap, *heap)
+}
+
+func TestMinHeap_SiftDown_explicity(t *testing.T) {
+	// given
+	heap := NewMinHeap([]int{1, 2, 15, 4, 3, 13, 12})
+
+	// when
+	parentIdx := 2
+	leftChildIdx := 5
+	rightChildIdx := 6
+	heap.siftDown(parentIdx, len(*heap)-1)
+
+	// expected
+	expectedParent := 12
+	expectedChildLeft := 13
+	expectedChildRight := 15
+
+	// then
+	require.Equal(t, expectedParent, (*heap)[parentIdx])
+	require.Equal(t, expectedChildLeft, (*heap)[leftChildIdx])
+	require.Equal(t, expectedChildRight, (*heap)[rightChildIdx])
+}

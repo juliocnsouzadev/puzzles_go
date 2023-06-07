@@ -22,6 +22,18 @@ func (h *MinHeap) siftDown(currentIndex, endIndex int) {
 	// Write your code here.
 }
 
+func (h *MinHeap) getChildrenIndices(parentIdx int) (int, int) {
+	doubleParentIdx := 2 * parentIdx
+	return doubleParentIdx + 1, doubleParentIdx + 2
+}
+
+func (h *MinHeap) isParent(parentIdx int) bool {
+	if r, l := getChildrenIndices(parentIdx); r < len(*h) || l < len(*h) {
+		return true
+	}
+	return false
+}
+
 func (h *MinHeap) siftUp() {
 	// Write your code here.
 }

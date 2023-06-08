@@ -152,3 +152,44 @@ func TestMinHeap_SiftDown_explicity(t *testing.T) {
 	require.Equal(t, expectedChildLeft, (*heap)[leftChildIdx])
 	require.Equal(t, expectedChildRight, (*heap)[rightChildIdx])
 }
+
+func TestMinHeap_Build(t *testing.T) {
+	// given
+	array := []int{48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41}
+
+	expected := []int{-5, 2, 6, 7, 8, 8, 24, 391, 24, 56, 12, 24, 48, 41}
+
+	// when
+	minHeap := NewMinHeap(array)
+
+	// then
+	require.NotNil(t, minHeap)
+	require.True(t, isMinHeap(expected, 0), "expected %v should be a min heap", expected)
+	require.True(t, isMinHeap(*minHeap, 0), "built heap %v should be a min heap", *minHeap)
+}
+
+func isMinHeap(heap []int, index int) bool {
+	// If the node is a leaf, it's a valid min heap.
+	if index >= len(heap)/2 {
+		return true
+	}
+
+	leftChild, rightChild := getChildrenIndices(index)
+
+	// Check the heap property.
+	isHeap := hasHeapProperty(heap, index, leftChild, rightChild)
+	if !isHeap {
+		return false
+	}
+
+	// Recursively check the children.
+	return isMinHeap(heap, leftChild) && isMinHeap(heap, rightChild)
+}
+
+func hasHeapProperty(heap []int, parent int, leftChild int, rightChild int) bool {
+	if heap[parent] > heap[leftChild] || (rightChild < len(heap) && heap[parent] > heap[rightChild]) {
+		//fmt.Printf("\nnot min heap because:\nparent:%v left:%v right:%v", heap[parent], heap[leftChild], heap[rightChild])
+		return false
+	}
+	return true
+}

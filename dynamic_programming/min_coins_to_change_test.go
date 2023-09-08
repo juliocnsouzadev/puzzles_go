@@ -101,6 +101,12 @@ func TestMinCoinsToChange2(t *testing.T) {
 			coins:    []int{1, 5, 10, 25},
 			expected: 4,
 		},
+		{
+			name:     "Amount hundred with all coins 01",
+			amount:   9,
+			coins:    []int{3, 5},
+			expected: 3,
+		},
 	}
 
 	for _, tt := range tests {
